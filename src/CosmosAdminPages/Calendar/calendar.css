@@ -1,0 +1,50 @@
+.light-success {
+    background-color: #63fa86; /* A lighter green */
+    color: rgb(0, 0, 0); /* Dark text for contrast */
+}
+
+.light-success:hover {
+    background-color: #36b54c; /* Darker green for hover */
+}
+
+.light-warning {
+    background-color: #6497ff; /* A lighter blue */
+    color: rgb(0, 0, 0); /* Dark text for contrast */
+}
+
+.light-warning:hover {
+    background-color: #3b73d3; /* Darker blue for hover */
+}
+
+.light-cancel {
+    background-color: #ea8686; /* A lighter red */
+    color: rgba(61, 28, 223, 0.986); /* Dark text for contrast */
+}
+
+.light-cancel:hover {
+    background-color: #d86f6f; /* Darker red for hover */
+}
+
+.light-danger {
+    background-color: #f8d7da; /* A lighter red */
+    color: #721c24; /* Dark text for contrast */
+}
+
+.light-danger:hover {
+    background-color: #f1b0b3; /* Darker red for hover */
+}
+
+.light-complete {
+    background-color: #000000; /* Black */
+    color: #721c24; /* Dark text for contrast */
+}
+
+.light-complete:hover {
+    background-color: #4d4d4d; /* Darker gray for hover */
+}
+
+.active-dark {
+    background-color: #000; /* Dark background for active state */
+    color: #fff;
+  }
+  

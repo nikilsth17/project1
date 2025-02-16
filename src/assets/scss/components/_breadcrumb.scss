@@ -1,0 +1,24 @@
+// 
+// breadcrumb.scss
+//
+
+
+// Breadcrumb item arrow
+.breadcrumb-item {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    > a {
+        color: var(--#{$prefix}body-color);
+    }
+    +.breadcrumb-item {
+        &::before {
+            font-family: "Material Design Icons";
+            font-size: 15px;
+            line-height: 20px;
+        }
+    }
+}
+  

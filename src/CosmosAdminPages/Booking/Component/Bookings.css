@@ -1,0 +1,56 @@
+.bookings-container {
+  margin-top: 80px;
+  padding: 20px;
+}
+
+.search-container {
+  margin-bottom: 10px; /* Reduced margin from 20px to 10px */
+}
+
+.search-input {
+  width: 50%;
+}
+
+.table-container {
+  margin-top: 10px; /* Reduced margin from 20px to 10px */
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.page-size-input {
+  width: 60px;
+}
+
+.modal-input {
+  margin-bottom: 10px;
+}
+
+.admin-buttons {
+  display: flex;
+  flex-wrap: nowrap; /* Ensure buttons do not wrap */
+  justify-content: space-between; /* Space out buttons evenly */
+  gap: 5px; /* Small gap between buttons */
+}
+
+.admin-buttons button {
+  font-size: 0.7rem; /* Smaller font size */
+  padding: 0.2rem 0.4rem; /* Smaller padding */
+  flex-shrink: 0; /* Prevent buttons from shrinking too much */
+}
+
+/* Optional: Specific styles for table columns */
+.table-container .rdt_TableCol {
+  overflow: hidden; /* Hide overflow content */
+  text-overflow: ellipsis; /* Adds '...' to overflowing text */
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.table-container .rdt_TableCol--actions {
+  width: 220px; /* Specific width for actions column */
+  max-width: 220px; /* Keeps the action column from expanding */
+}

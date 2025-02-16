@@ -1,0 +1,44 @@
+.ck.ck-editor__editable_inline{
+    border: '1px solid black';
+    padding: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 510px;
+    border: '1px solid black';
+
+}
+.ck.ck-editor__editable{
+    border: '1px solid black';
+}
+.ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+    border: '1px solid black';
+    box-shadow: var(--ck-inner-shadow),0 0;
+    outline: none;
+    height: 510px;
+    overflow: scroll;
+}
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    border: '1px solid black';
+
+}
+.ck-rounded-corners {
+    border-radius: '0px';
+    border: '1px solid black';
+}
+.ck{
+    border: '1px solid black';
+    border-radius: '0px';
+}
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar, .ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+    border-radius: 0 !important;
+    border: '1px solid black';
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    background-color: red;
+}
+
+
+.ck-reset_all :not(.ck-reset_all-excluded *), .ck.ck-reset_all {
+    /* border-collapse: collapse; */
+    border: '1px solid black';
+}

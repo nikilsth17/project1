@@ -1,0 +1,17 @@
+.text-black {
+    color: black !important;
+    font-weight: 500;
+    justify-content: center;
+    text-align: center;
+    margin-top: 5px;
+  
+  }
+  
+  .text-white {
+    color: white !important;
+    font-weight: 500;
+    justify-content: center;
+    text-align: center;
+    margin-top: 5px;
+  }
+  

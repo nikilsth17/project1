@@ -1,0 +1,61 @@
+/* styles.css */
+
+.defaultStyle .theadcss .thcss th {
+    background-color: #645BD0;
+    color: white;
+}
+
+
+
+/* .trcss should alternate color on every row */
+.defaultStyle .trcss {
+    background-color: #DEDDED;
+    color: black;
+    border: none;
+    border-color: transparent;
+}
+
+
+.defaultStyle .trcss:nth-child(even) {
+    background-color: #F6F6FB;
+    border: none;
+    color: black;
+}
+/* .defaultStyle .tdcss p {
+    margin-bottom: 0px;
+    
+} */
+
+/* dsaf */
+
+/* styles.css */
+/* 
+.subModule{
+    border: 1px solid #BDBAE4;
+    border-radius: 5px !important;
+} */
+
+
+.subModule  .thcss {
+    color: #7D74DD;
+}
+
+
+
+/* .trcss should alternate color on every row */
+.subModule .trcss {
+    
+    color: black;
+    border: none !important;
+}
+.subModule .tdcss {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: black;
+    font-size: 12px;
+    border: none !important;
+}
+.subModule .tdcss p {
+    margin-bottom: 0px;
+    
+}
