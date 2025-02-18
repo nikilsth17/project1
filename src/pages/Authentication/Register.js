@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import BreadCrumb from "../../Components/Common/BreadCrumb";
 import {
   Container,
@@ -23,6 +23,7 @@ import { useDispatch } from "react-redux";
 import Select from "react-select";
 import AuthenticationsServices from "../../services/AuthenticationService/AuthenticationsServices";
 import { Spinner } from "reactstrap";
+import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 const Register = () => {
   const { id } = useParams();
   const history = useNavigate();
@@ -31,7 +32,8 @@ const Register = () => {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [userOptions, setuserOptions] = useState([]);
-
+  const [passwordShow, setPasswordShow] = useState(false);
+  const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -94,42 +96,13 @@ const Register = () => {
   const validation = useFormik({
     enableReinitialize: true,
     initialValues: {
-      username: "",
+      fullName: "",
+      lastName: "",
       password: "",
-      confirmPassword: "",
+      password_confirmation: "",
       roles: [],
     },
-    validate: (values) => {
-      const errors = {};
 
-      if (!values.username) {
-        errors.username = "Name is required";
-      }
-
-      // Password validation
-      if (!values.password) {
-        errors.password = "Password is required";
-      } else if (
-        !/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(
-          values.password
-        )
-      ) {
-        errors.password =
-          "Password must be at least 8 characters, include at least one uppercase, one lowercase, one digit, and one special character.";
-      }
-
-      // Conditionally validate confirm password based on password
-      if (values.password.length >= 8 && !values.confirmPassword) {
-        errors.confirmPassword = "Confirm Password is required";
-      } else if (values.password !== values.confirmPassword) {
-        errors.confirmPassword = "Passwords do not match";
-      }
-      if (values.roles.length === 0) {
-        errors.roles = "Please select at least one role";
-      }
-
-      return errors;
-    },
     onSubmit: async (values, { setFieldError, resetForm, setValues }) => {
       try {
         setIsSaving(true);
@@ -188,148 +161,261 @@ const Register = () => {
 
   return (
     <React.Fragment>
-      <Container fluid>
-        <div className="page-content">
-          <BreadCrumb
-            title="Admin Register"
-            pageTitle="Register"
-            breadcrumbItems={breadcrumbItems}
-          />
-
-          <Row>
-            <Col lg={3}></Col>
-            <Col lg={6}>
-              <Card>
+      <ParticlesAuth>
+        <Container>
+          <Row className="justify-content-center py-4">
+            <Col md={8} lg={6} xl={5}>
+              <Card className="p-2">
                 <CardBody>
+                  <div className="text-center mt-2">
+                    <h5 className="text-primary">Register</h5>
+                    <p className="text-muted">
+                      Register account to continue to admin panel.
+                    </p>
+                  </div>
                   <Form
                     onSubmit={validation.handleSubmit}
-                    className="needs-validation"
+                    // className="needs-validation"
                     action="#"
                   >
-                    <FormGroup row>
-                      <Label htmlFor="username" className="form-label">
-                        Username <span className="text-danger">*</span>
-                      </Label>
-                      <Col sm={12}>
+                    <Row>
+                      <Col md={6} className="mb-3">
+                        <Label htmlFor="username" className="form-label">
+                          First Name <span className="text-danger">*</span>
+                        </Label>
+
+                        <Input
+                          name="firstName"
+                          type="text"
+                          placeholder="Enter first name"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.firstName || ""}
+                          invalid={
+                            validation.touched.firstName &&
+                            validation.errors.firstName
+                          }
+                        />
+                        {validation.touched.firstName &&
+                          validation.errors.firstName && (
+                            <FormFeedback type="invalid">
+                              {validation.errors.firstName}
+                            </FormFeedback>
+                          )}
+                      </Col>
+                      <Col md={6} className="mb-3">
+                        <Label htmlFor="username" className="form-label">
+                          Last Name <span className="text-danger">*</span>
+                        </Label>
+
+                        <Input
+                          name="lastName"
+                          type="text"
+                          placeholder="Enter last name"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.lastName || ""}
+                          invalid={
+                            validation.touched.lastName &&
+                            validation.errors.lastName
+                          }
+                        />
+                        {validation.touched.lastName &&
+                          validation.errors.lastName && (
+                            <FormFeedback type="invalid">
+                              {validation.errors.lastName}
+                            </FormFeedback>
+                          )}
+                      </Col>
+                      <Col md={12} className="mb-3">
+                        <Label htmlFor="username" className="form-label">
+                          Email
+                        </Label>
                         <Input
                           name="username"
+                          className="form-control"
+                          placeholder="Enter email"
                           type="text"
-                          placeholder="Enter username"
-                          onChange={validation.handleChange}
+                          onChange={(e) => {
+                            validation.handleChange(e);
+                            setusername(e.target.value);
+                          }}
                           onBlur={validation.handleBlur}
                           value={validation.values.username || ""}
                           invalid={
                             validation.touched.username &&
                             validation.errors.username
+                              ? true
+                              : false
                           }
                         />
                         {validation.touched.username &&
-                          validation.errors.username && (
-                            <FormFeedback type="invalid">
-                              {validation.errors.username}
-                            </FormFeedback>
-                          )}
+                        validation.errors.username ? (
+                          <FormFeedback type="invalid">
+                            {validation.errors.username}
+                          </FormFeedback>
+                        ) : null}
                       </Col>
-                    </FormGroup>
 
-                    <FormGroup row>
-                      <Label htmlFor="password" className="form-label">
-                        Password <span className="text-danger">*</span>
-                      </Label>
-                      <Col sm={12}>
-                        <Input
-                          name="password"
-                          type="password"
-                          placeholder="Enter Password"
-                          onChange={validation.handleChange}
-                          onBlur={validation.handleBlur}
-                          value={validation.values.password || ""}
-                          invalid={
-                            validation.touched.password &&
-                            validation.errors.password
-                          }
-                        />
+                      <Col  md={12} xs={12} className="mb-3">
+                        <Label for="password">Password</Label>
+                        <div className="position-relative">
+                          <Input
+                            name="password"
+                            value={validation.values.password}
+                            type={passwordShow ? "text" : "password"}
+                            className="form-control " // Added padding on left to avoid overlap
+                            placeholder="Enter Password"
+                            onChange={validation.handleChange}
+                            onBlur={validation.handleBlur}
+                            invalid={
+                              !!(
+                                validation.touched.password &&
+                                validation.errors.password
+                              )
+                            }
+                          />
+                          <button
+                            className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted my-4"
+                            type="button"
+                            onClick={() => setPasswordShow(!passwordShow)}
+                            style={{
+                              right:
+                                validation.touched.password &&
+                                validation.errors.password
+                                  ? "18px"
+                                  : "0px",
+                              top: "50%",
+                              transform: "translateY(-50%)",
+                            }}
+                          >
+                            {passwordShow ? (
+                              <i
+                                className="bx bxs-show"
+                                style={{ fontSize: "20px" }}
+                              ></i>
+                            ) : (
+                              <i
+                                className="bx bxs-hide"
+                                style={{ fontSize: "20px" }}
+                              ></i>
+                            )}
+                          </button>
+                        </div>
                         {validation.touched.password &&
                           validation.errors.password && (
-                            <FormFeedback type="invalid">
+                            <FormFeedback>
                               {validation.errors.password}
                             </FormFeedback>
                           )}
                       </Col>
-                    </FormGroup>
 
-                    <FormGroup row>
-                      <Label htmlFor="confirmPassword" className="form-label">
-                        Confirm Password <span className="text-danger">*</span>
-                      </Label>
-                      <Col sm={12}>
-                        <Input
-                          name="confirmPassword"
-                          type="password"
-                          placeholder="Confirm Password"
-                          onChange={validation.handleChange}
-                          onBlur={validation.handleBlur}
-                          value={validation.values.confirmPassword || ""}
-                          invalid={
-                            validation.touched.confirmPassword &&
-                            validation.errors.confirmPassword
-                          }
-                        />
-                        {validation.touched.confirmPassword &&
-                          validation.errors.confirmPassword && (
-                            <FormFeedback type="invalid">
-                              {validation.errors.confirmPassword}
+                      {/* Confirm Password */}
+                      <Col  md={12} xs={12} className="mb-3">
+                        <Label for="password_confirmation">
+                          Confirm Password
+                        </Label>
+                        <div className="position-relative">
+                          <Input
+                            name="password_confirmation"
+                            value={validation.values.password_confirmation}
+                            type={confirmPasswordShow ? "text" : "password"}
+                            className="form-control" // Added padding on left to avoid overlap
+                            placeholder="Confirm Password"
+                            onChange={validation.handleChange}
+                            onBlur={validation.handleBlur}
+                            invalid={
+                              !!(
+                                validation.touched.password_confirmation &&
+                                validation.errors.password_confirmation
+                              )
+                            }
+                          />
+                          <button
+                            className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted my-4"
+                            type="button"
+                            onClick={() =>
+                              setConfirmPasswordShow(!confirmPasswordShow)
+                            }
+                            style={{
+                              right:
+                                validation.touched.password_confirmation &&
+                                validation.errors.password_confirmation
+                                  ? "18px"
+                                  : "0px",
+                              top: "50%",
+                              transform: "translateY(-50%)",
+                            }}
+                          >
+                            {confirmPasswordShow ? (
+                              <i
+                                className="bx bxs-show"
+                                style={{ fontSize: "20px" }}
+                              ></i>
+                            ) : (
+                              <i
+                                className="bx bxs-hide"
+                                style={{ fontSize: "20px" }}
+                              ></i>
+                            )}
+                          </button>
+                        </div>
+                        {validation.touched.password_confirmation &&
+                          validation.errors.password_confirmation && (
+                            <FormFeedback>
+                              {validation.errors.password_confirmation}
                             </FormFeedback>
                           )}
                       </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="paymentTypes" sm={2}>
-                        User Roles:
-                      </Label>
-                      <Col sm={12}>
-                        <Select
-                          value={validation.values.roles.map((role) => ({
-                            value: role.id,
-                            label: role.name,
-                          }))}
-                          isMulti
-                          isClearable
-                          onChange={(selectedOptions) => {
-                            const rolesData = selectedOptions.map((option) => ({
-                              id: option.value,
-                              name: option.label,
-                            }));
-                            validation.setValues({
-                              ...validation.values,
-                              roles: rolesData,
-                            });
-                          }}
-                          options={userOptions.map((role) => ({
-                            value: role.id,
-                            label: role.name,
-                          }))}
-                          className={`form-control ${
-                            validation.touched.roles && validation.errors.roles
-                              ? "is-invalid"
-                              : ""
-                          }`}
-                        />
-                        {validation.touched.roles &&
-                          validation.errors.roles && (
-                            <div className="invalid-feedback">
-                              {validation.errors.roles}
-                            </div>
-                          )}
-                      </Col>
-                    </FormGroup>
 
-                    <div className="text-end">
-                      <Label sm={2}></Label>
-                      <Col sm={12}>
+                      {/* <FormGroup>
+                        <Label for="paymentTypes" sm={2}>
+                          User Roles:
+                        </Label>
+                        <Col sm={12}>
+                          <Select
+                            value={validation.values.roles.map((role) => ({
+                              value: role.id,
+                              label: role.name,
+                            }))}
+                            isMulti
+                            isClearable
+                            onChange={(selectedOptions) => {
+                              const rolesData = selectedOptions.map(
+                                (option) => ({
+                                  id: option.value,
+                                  name: option.label,
+                                })
+                              );
+                              validation.setValues({
+                                ...validation.values,
+                                roles: rolesData,
+                              });
+                            }}
+                            options={userOptions.map((role) => ({
+                              value: role.id,
+                              label: role.name,
+                            }))}
+                            className={`form-control ${
+                              validation.touched.roles &&
+                              validation.errors.roles
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                          />
+                          {validation.touched.roles &&
+                            validation.errors.roles && (
+                              <div className="invalid-feedback">
+                                {validation.errors.roles}
+                              </div>
+                            )}
+                        </Col>
+                      </FormGroup> */}
+
+                      <div className="mb-3">
                         <Button
                           type="submit"
-                          className="btn btn-primary me-2"
+                          className="btn btn-success w-100"
                           disabled={isSaving}
                         >
                           {isSaving ? (
@@ -339,40 +425,26 @@ const Register = () => {
                                 color="light"
                                 className="me-2"
                               />{" "}
-                              Saving...
+                              Registering...
                             </>
                           ) : (
-                            "Save"
+                            "Register"
                           )}
                         </Button>
-                        <Button
-                          onClick={() => {
-                            setIsCanceling(true);
-                            setTimeout(() => {
-                              navigate("/User-Role");
-                              setIsCanceling(false);
-                            }, 1000); // Simulating a delay of 1 second before navigating and setting isCanceling back to false
-                          }}
-                          className="btn btn-danger me-2"
-                          disabled={isCanceling || isSaving}
-                        >
-                          {isCanceling ? (
-                            <>
-                              <Spinner size="sm" color="light" /> Canceling...
-                            </>
-                          ) : (
-                            "Cancel"
-                          )}
-                        </Button>
-                      </Col>
-                    </div>
+                      </div>
+
+                      <div className=" text-center">
+                        Already registered account?{" "}
+                        <Link to={`/login`}>Login Here</Link>
+                      </div>
+                    </Row>
                   </Form>
                 </CardBody>
               </Card>
             </Col>
           </Row>
-        </div>
-      </Container>
+        </Container>
+      </ParticlesAuth>
     </React.Fragment>
   );
 };

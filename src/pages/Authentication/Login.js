@@ -134,7 +134,7 @@ const Login = (props) => {
                   <div className="text-center mt-2">
                     <h5 className="text-primary">Welcome Back!</h5>
                     <p className="text-muted">
-                      Sign in to continue to Cosmos Bookings admin panel.
+                      Sign in to continue to admin panel.
                     </p>
                   </div>
                   {errorMsg && errorMsg ? (
@@ -255,9 +255,10 @@ const Login = (props) => {
                           Sign In
                         </Button>
                       </div>
-                      {/* <div className="mt-3 mb-5">
-                          <Link to={`/register`}>Register Here!</Link>
-                        </div> */}
+                      <div className=" text-center">
+                        Dont have an account?{" "}
+                        <Link to={`/register`}>Register Here</Link>
+                      </div>
                     </Form>
                   </div>
                 </CardBody>
