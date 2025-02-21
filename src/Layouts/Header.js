@@ -18,6 +18,7 @@ import { createSelector } from "reselect";
 import logolight from "../../src/assets/qaManagemet/AntsQualityLightLogo.png";
 import { changeSidebarVisibility } from "../slices/thunks";
 import NotificationDropdown from "../CosmosAdminPages/Notifications/NotificationDropdown";
+import Country from "../project1/Country/Country";
 
 const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   const dispatch = useDispatch();
@@ -170,6 +171,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
               {/* <NotificationDropdown /> */}
 
               {/* ProfileDropdown */}
+              <Country />
               <ProfileDropdown />
             </div>
           </div>

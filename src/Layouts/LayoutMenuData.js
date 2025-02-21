@@ -277,44 +277,35 @@ const Navdata = () => {
     //     handleMenuClick("suburb");
     //   },
     // },
+
     {
-      id: "Settings",
+      id: "settings",
       label: "Settings",
       icon: "ri-settings-5-line",
       link: "/settings",
+      parentId: "settings",
       click: (e) => {
         e.preventDefault();
-        handleMenuClick("Settings");
+        setSetttings(!setttings);
+        setIscurrentState("settings");
+        updateIconSidebar(e);
       },
+      stateVariables: setttings,
+      subItems: [
+        {
+          id: "administrative-unit",
+          label: "Administrative Unit",
+          link: "/administrative-unit",
+          parentId: "setttings",
+        },
+        {
+          id: "language",
+          label: "Language",
+          link: "/language",
+          parentId: "settings",
+        },
+      ],
     },
-    // {
-    //   id: "settings",
-    //   label: "Settings",
-    //   icon: "ri-settings-5-line",
-    //   link: "/settings",
-    //   parentId: "settings",
-    //   click: (e) => {
-    //     e.preventDefault();
-    //     setSetttings(!setttings);
-    //     setIscurrentState("settings");
-    //     updateIconSidebar(e);
-    //   },
-    //   stateVariables: setttings,
-    //   subItems: [
-    //     {
-    //       id: "contact-us",
-    //       label: "Contact Us",
-    //       link: "/contact-us",
-    //       parentId: "setttings",
-    //     },
-    //     // {
-    //     //   id: "one-time-schedule",
-    //     //   label: "One time Schedule",
-    //     //   link: "/one-time-schedule",
-    //     //   parentId: "weekly-schedule",
-    //     // },
-    //   ],
-    // },
   ];
 
   // if (isAdmin) {

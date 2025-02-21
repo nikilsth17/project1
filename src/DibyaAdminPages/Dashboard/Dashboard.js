@@ -223,7 +223,7 @@ export default function Dashboard() {
               </Card>
             </Col>
             <Col lg={6}>
-              <p className="mt-2 mb-0 fs-5 fw-semibold">New Customer</p>
+              <p className="mt-2 mb-0 fs-5 fw-semibold">New User</p>
               {/* <Card className="p-2 rounded-3 mb-2">
                   <Row className="align-items-center">
                     <Col xs={12} md={4}>

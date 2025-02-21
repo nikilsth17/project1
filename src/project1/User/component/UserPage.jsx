@@ -54,7 +54,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
   console.log("🚀 ~ UserPage ~ editingUser:", editingUser);
 
   const handleEdit = (user) => {
-    setEditingUser(user); 
+    setEditingUser(user);
     toggleModal();
   };
   const [passwordShow, setPasswordShow] = useState(false);
@@ -393,61 +393,53 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
               </div>
             </Col>
             <Col lg={6} md={6} xs={12} className="mb-3">
-                              <div className="form-floating">
-                                <Input
-                                  name="password_confirmation"
-                                  type={confirmPasswordShow ? "text" : "password"}
-                                  className="form-control pe-5"
-                                  placeholder="Confirm password"
-                                  onChange={formik.handleChange}
-                                  onBlur={formik.handleBlur}
-                                  value={formik.values.password_confirmation || ""}
-                                  invalid={
-                                    !!(
-                                      formik.touched.password_confirmation &&
-                                      formik.errors.password_confirmation
-                                    )
-                                  }
-                                  style={{
-                                    padding: "0.5rem",
-                                    height: "1rem",
-                                  }}
-                                />
-                                <Label for="floatingInput">Confirm Password</Label>
-                                {formik.touched.password_confirmation &&
-                                  formik.errors.password_confirmation && (
-                                    <FormFeedback type="invalid">
-                                      {formik.errors.password_confirmation}
-                                    </FormFeedback>
-                                  )}
-                                <button
-                                  className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted mt-2"
-                                  type="button"
-                                  onClick={() =>
-                                    setConfirmPasswordShow(!confirmPasswordShow)
-                                  }
-                                  style={{
-                                    marginRight:
-                                      formik.touched.password_confirmation &&
-                                      formik.errors.password_confirmation
-                                        ? "18px"
-                                        : "0px",
-                                  }}
-                                >
-                                  {confirmPasswordShow ? (
-                                    <i
-                                      className="bx bxs-show"
-                                      style={{ fontSize: "22px" }}
-                                    ></i>
-                                  ) : (
-                                    <i
-                                      className="bx bxs-hide"
-                                      style={{ fontSize: "22px" }}
-                                    ></i>
-                                  )}
-                                </button>
-                              </div>
-                            </Col>
+              <div className="form-floating">
+                <Input
+                  name="password_confirmation"
+                  type={confirmPasswordShow ? "text" : "password"}
+                  className="form-control pe-5"
+                  placeholder="Confirm password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password_confirmation || ""}
+                  invalid={
+                    !!(
+                      formik.touched.password_confirmation &&
+                      formik.errors.password_confirmation
+                    )
+                  }
+                  style={{
+                    padding: "0.5rem",
+                    height: "1rem",
+                  }}
+                />
+                <Label for="floatingInput">Confirm Password</Label>
+                {formik.touched.password_confirmation &&
+                  formik.errors.password_confirmation && (
+                    <FormFeedback type="invalid">
+                      {formik.errors.password_confirmation}
+                    </FormFeedback>
+                  )}
+                <button
+                  className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted mt-2"
+                  type="button"
+                  onClick={() => setConfirmPasswordShow(!confirmPasswordShow)}
+                  style={{
+                    marginRight:
+                      formik.touched.password_confirmation &&
+                      formik.errors.password_confirmation
+                        ? "18px"
+                        : "0px",
+                  }}
+                >
+                  {confirmPasswordShow ? (
+                    <i className="bx bxs-show" style={{ fontSize: "22px" }}></i>
+                  ) : (
+                    <i className="bx bxs-hide" style={{ fontSize: "22px" }}></i>
+                  )}
+                </button>
+              </div>
+            </Col>
           </Row>
           <div className="d-flex justify-content-end gap-3">
             <Button color="danger" onClick={toggleModal}>

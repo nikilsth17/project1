@@ -379,6 +379,7 @@ import Detail from "../CosmosAdminPages/Customer/Component/Detail";
 import CustomerDetailDriver from "../CosmosAdminPages/Customer/Component/CustomerDetailDriver";
 import User from "../project1/User/page/User";
 import FertilityPage from "../project1/Fertility/page/FertilityPage";
+import Unit from "../project1/Administrative Unit/page/Unit";
 
 //ApprovedList
 
@@ -896,6 +897,8 @@ const authProtectedRoutes = [
   ///////project 1
   { path: "/user", component: <User /> },
   { path: "/fertility", component: <FertilityPage /> },
+  { path: "/administrative-unit", component: <Unit /> },
+  { path: "/language", component: <Unit /> },
 ];
 
 const publicRoutes = [
