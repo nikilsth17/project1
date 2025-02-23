@@ -8,7 +8,7 @@ import image3 from "../../assets/project1/Logo-INETL.png";
 const ParticlesAuth = ({ children }) => {
   return (
     <React.Fragment>
-      <div className="auth-page-wrapper py-4 bg-info bg-opacity-50">
+      <div className="auth-page-wrapper py-4">
         <div className="container">
           {/* <div className="bg-overlay"></div> */}
 

@@ -226,7 +226,7 @@ const Login = (props) => {
                         </div>
                       </div>
 
-                      <div className="form-check mb-2">
+                      <div className="form-check mb-2 text-dark">
                         <Input
                           className="form-check-input"
                           type="checkbox"
