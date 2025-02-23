@@ -129,14 +129,14 @@ const Login = (props) => {
         <Container>
           <Row className="justify-content-center">
             <Col md={8} lg={6} xl={5}>
-              <Card className="mt-4">
-                <CardBody className="p-4">
-                  <div className="text-center mt-2">
+              <div className="mt-2">
+                <CardBody className="p-2">
+                  {/* <div className="text-center mt-2">
                     <h5 className="text-primary">Welcome Back!</h5>
                     <p className="text-muted">
                       Sign in to continue to admin panel.
                     </p>
-                  </div>
+                  </div> */}
                   {errorMsg && errorMsg ? (
                     <Alert color="danger"> {errorMsg} </Alert>
                   ) : null}
@@ -149,9 +149,9 @@ const Login = (props) => {
                       }}
                       action="#"
                     >
-                      <div className="mb-3">
-                        <Label htmlFor="username" className="form-label">
-                          Email
+                      <div className="mb-2">
+                        <Label htmlFor="username" className="form-label text-dark">
+                          Email Address
                         </Label>
                         <Input
                           name="username"
@@ -179,7 +179,7 @@ const Login = (props) => {
                         ) : null}
                       </div>
 
-                      <div className="mb-3 mt-1">
+                      <div className="mb-2">
                         <div className="float-end">
                           <Link
                             // to="/forgot-password-change/:${username}``"
@@ -190,10 +190,10 @@ const Login = (props) => {
                             Forgot password?
                           </Link>
                         </div>
-                        <Label className="form-label" htmlFor="password-input">
+                        <Label className="form-label text-dark" htmlFor="password-input ">
                           Password
                         </Label>
-                        <div className="position-relative auth-pass-inputgroup mb-3">
+                        <div className="position-relative auth-pass-inputgroup mb-2">
                           <Input
                             name="password"
                             value={validation.values.password || ""}
@@ -226,7 +226,7 @@ const Login = (props) => {
                         </div>
                       </div>
 
-                      <div className="form-check">
+                      <div className="form-check mb-2">
                         <Input
                           className="form-check-input"
                           type="checkbox"
@@ -240,7 +240,7 @@ const Login = (props) => {
                           Remember me
                         </Label>
                       </div>
-                      <div className="mt-4 mb-3">
+                      <div className=" mb-3">
                         <Button
                           disabled={error ? null : loading ? true : false}
                           color="success"
@@ -255,14 +255,14 @@ const Login = (props) => {
                           Sign In
                         </Button>
                       </div>
-                      <div className=" text-center">
+                      <div className=" text-center text-dark">
                         Dont have an account?{" "}
                         <Link to={`/register`}>Register Here</Link>
                       </div>
                     </Form>
                   </div>
                 </CardBody>
-              </Card>
+              </div>
             </Col>
           </Row>
         </Container>

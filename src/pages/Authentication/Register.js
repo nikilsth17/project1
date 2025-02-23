@@ -165,22 +165,22 @@ const Register = () => {
         <Container>
           <Row className="justify-content-center py-4">
             <Col md={8} lg={6} xl={5}>
-              <Card className="p-2">
+              <div className="">
                 <CardBody>
-                  <div className="text-center mt-2">
+                  {/* <div className="text-center mt-2">
                     <h5 className="text-primary">Register</h5>
                     <p className="text-muted">
                       Register account to continue to admin panel.
                     </p>
-                  </div>
+                  </div> */}
                   <Form
                     onSubmit={validation.handleSubmit}
                     // className="needs-validation"
                     action="#"
                   >
                     <Row>
-                      <Col md={6} className="mb-3">
-                        <Label htmlFor="username" className="form-label">
+                      <Col md={6} className="mb-2">
+                        <Label htmlFor="username" className="form-label text-dark">
                           First Name <span className="text-danger">*</span>
                         </Label>
 
@@ -203,8 +203,8 @@ const Register = () => {
                             </FormFeedback>
                           )}
                       </Col>
-                      <Col md={6} className="mb-3">
-                        <Label htmlFor="username" className="form-label">
+                      <Col md={6} className="mb-2">
+                        <Label htmlFor="username" className="form-label text-dark">
                           Last Name <span className="text-danger">*</span>
                         </Label>
 
@@ -227,8 +227,8 @@ const Register = () => {
                             </FormFeedback>
                           )}
                       </Col>
-                      <Col md={12} className="mb-3">
-                        <Label htmlFor="username" className="form-label">
+                      <Col md={12} className="mb-2">
+                        <Label htmlFor="username" className="form-label text-dark">
                           Email
                         </Label>
                         <Input
@@ -257,8 +257,8 @@ const Register = () => {
                         ) : null}
                       </Col>
 
-                      <Col  md={12} xs={12} className="mb-3">
-                        <Label for="password">Password</Label>
+                      <Col  md={12} xs={12} className="mb-2">
+                        <Label for="password" className="text-dark">Password</Label>
                         <div className="position-relative">
                           <Input
                             name="password"
@@ -312,7 +312,7 @@ const Register = () => {
 
                       {/* Confirm Password */}
                       <Col  md={12} xs={12} className="mb-3">
-                        <Label for="password_confirmation">
+                        <Label for="password_confirmation" className="text-dark">
                           Confirm Password
                         </Label>
                         <div className="position-relative">
@@ -412,7 +412,7 @@ const Register = () => {
                         </Col>
                       </FormGroup> */}
 
-                      <div className="mb-3">
+                      <div className="mb-2">
                         <Button
                           type="submit"
                           className="btn btn-success w-100"
@@ -433,14 +433,14 @@ const Register = () => {
                         </Button>
                       </div>
 
-                      <div className=" text-center">
+                      <div className=" text-center text-dark">
                         Already registered account?{" "}
                         <Link to={`/login`}>Login Here</Link>
                       </div>
                     </Row>
                   </Form>
                 </CardBody>
-              </Card>
+              </div>
             </Col>
           </Row>
         </Container>
