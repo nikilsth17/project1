@@ -12,12 +12,12 @@ import "./App.css";
 
 // Fake Backend
 import fakeBackend from "./helpers/AuthType/fakeBackend";
-
+import { I18nextProvider } from "react-i18next";
+import './i18n'; // Import i18n configuration
 // Activating fake backend
 fakeBackend();
 import { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { REFRESH_INTERVAL, refreshToken } from "./utilis/authUtilis";
+
 import _BaseAPIService from "./services/_BaseAPIService";
 
 // const firebaseConfig = {
@@ -47,8 +47,8 @@ function App() {
   // }, [navigate]);
   return (
     <React.Fragment>
-      <Route />
-      <Toaster />
+        <Route />
+        <Toaster />
     </React.Fragment>
   );
 }

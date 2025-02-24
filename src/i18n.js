@@ -9,29 +9,15 @@ import translationSP from "./locales/sp.json";
 import translationENG from "./locales/en.json";
 import translationCN from "./locales/ch.json";
 import translationFR from "./locales/fr.json";
-
+import translationTL from "./locales/tl.json";
 // the translations
 const resources = {
-  gr: {
-    translation: translationGr,
-  },
-  it: {
-    translation: translationIT,
-  },
-  rs: {
-    translation: translationRS,
-  },
-  sp: {
-    translation: translationSP,
-  },
   en: {
     translation: translationENG,
   },
-  cn: {
-    translation: translationCN,
-  },
-  fr: {
-    translation: translationFR,
+
+  tl: {
+    translation: translationTL, // fixed the typo here
   },
 };
 

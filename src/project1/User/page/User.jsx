@@ -27,6 +27,7 @@ import AddCustomer from "../../../CosmosAdminPages/Customer/Component/AddCustome
 import useIsSmallScreen from "../../../CosmosAdminPages/Payment Type/Component/small screen/SmallScreen";
 import UserPage from "../component/UserPage";
 import data from "../data/data";
+import { useTranslation } from "react-i18next";
 
 const customStyles = {
   headCells: {
@@ -43,6 +44,7 @@ const customStyles = {
 };
 
 const User = () => {
+  const { t, i18n } = useTranslation();
   const user = JSON.parse(localStorage.getItem("user"));
   // console.log("🚀 ~ Calender ~ user:", user);
   const driverId = user?.user?.id;
@@ -150,7 +152,7 @@ const User = () => {
             overflowWrap: "break-word",
           }}
         >
-          User
+          {t("User")}
         </div>
       ),
       selector: (row) => (
@@ -177,7 +179,7 @@ const User = () => {
             overflowWrap: "break-word",
           }}
         >
-          Phone No
+          {t("Phone No")}
         </div>
       ),
       selector: (row) => row.phone_no,
@@ -193,7 +195,7 @@ const User = () => {
             overflowWrap: "break-word",
           }}
         >
-          Role
+          {t("Role")}
         </div>
       ),
       selector: (row) => row.user_role,
@@ -209,7 +211,7 @@ const User = () => {
             overflowWrap: "break-word",
           }}
         >
-          Administrative Unit
+          {t("Administrative Unit")}
         </div>
       ),
       selector: (row) => row.administrative_unit,
@@ -218,7 +220,7 @@ const User = () => {
     },
 
     {
-      name: "Action",
+      name: t("Action"),
       selector: (row) => (
         <ButtonGroup className="gap-1">
           <Button
@@ -278,7 +280,7 @@ const User = () => {
           className="d-flex justify-content-end align-items-end mb-2"
         >
           <Button className="package-button px-1 px-sm-2" onClick={toggleModal}>
-            Add New User
+            +{t("Add New User")}
           </Button>
         </Col>
         {/* // )} */}

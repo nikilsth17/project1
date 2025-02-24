@@ -204,5 +204,10 @@
     "Privacy Policy" : "Politique de confidentialité",
     "Terms Condition" : "Termes et conditions",
     "pages" : "pages",
-    "React Datatables" : "Tableaux de données de réaction"
+    "React Datatables" : "Tableaux de données de réaction",
+    "User":"Utilisateur",
+    "Dashboard":"Tableau de bord",
+    "Fertility":"Fécondité",
+    "Edit User":"Modifier l'utilisateur",
+    "Add User":"Ajouter un utilisateur"
 }

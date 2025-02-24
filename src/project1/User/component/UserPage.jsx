@@ -16,6 +16,8 @@ import {
 } from "reactstrap";
 import * as Yup from "yup";
 import _BaseAPIService from "../../../services/_BaseAPIService";
+import "../../../i18n"; // Import i18n configuration
+import { useTranslation } from "react-i18next";
 
 const UserSchema = Yup.object().shape({
   first_name: Yup.string().required("Required"),
@@ -34,6 +36,7 @@ const UserSchema = Yup.object().shape({
 
 const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
   const [users, setUsers] = useState([]);
+  const { t, i18n } = useTranslation();
 
   const administrativeUnits = ["Unit 1", "Unit 2", "Unit 3"]; // Replace with actual data
 
@@ -81,8 +84,9 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
   return (
     <Modal isOpen={modal} toggle={toggleModal} size="lg">
       <ModalHeader toggle={toggleModal}>
-        {editingUser ? "Edit User" : "Add User"}
+        {editingUser ? t("Edit User") : t("Add User")}
       </ModalHeader>
+
       <ModalBody>
         <form onSubmit={formik.handleSubmit}>
           <Row>
@@ -91,7 +95,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                 <Input
                   name="first_name"
                   className="form-control"
-                  placeholder="Enter first name"
+                  placeholder={t("Enter first name")}
                   type="text"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -101,7 +105,8 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   }
                   style={{ padding: "0.5rem", height: "1rem" }}
                 />
-                <Label for="floatingInput">First Name</Label>
+                <Label for="floatingInput">{t("First Name")}</Label>{" "}
+                {/* Corrected the Label */}
                 {formik.touched.first_name && formik.errors.first_name && (
                   <FormFeedback type="invalid">
                     {formik.errors.first_name}
@@ -109,6 +114,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                 )}
               </div>
             </Col>
+
             <Col lg={6} md={6} className="mb-3">
               <div className="form-floating">
                 <Input
@@ -124,7 +130,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   }
                   style={{ padding: "0.5rem", height: "1rem" }}
                 />
-                <Label for="floatingInput">Last Name</Label>
+                <Label for="floatingInput">{t("Last Name")}</Label>
                 {formik.touched.last_name && formik.errors.last_name && (
                   <FormFeedback type="invalid">
                     {formik.errors.last_name}
@@ -147,7 +153,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   }
                   style={{ padding: "0.5rem", height: "1rem" }}
                 />
-                <Label for="floatingInput">Phone</Label>
+                <Label for="floatingInput">{t("Phone No")}</Label>
                 {formik.touched.phone_no && formik.errors.phone_no && (
                   <FormFeedback type="invalid">
                     {formik.errors.phone_no}
@@ -192,7 +198,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   }
                   style={{ padding: "0.5rem", height: "1rem" }}
                 />
-                <Label for="floatingInput">User Role</Label>
+                <Label for="floatingInput">{t("User Role")}</Label>
                 {formik.touched.user_role && formik.errors.user_role && (
                   <FormFeedback type="invalid">
                     {formik.errors.user_role}
@@ -218,7 +224,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   style={{ padding: "0.5rem", height: "1rem" }}
                 >
                   <Label for="floatingInput">Administrative Unit</Label>
-                  <option value="">Select Unit</option>
+                  <option value="">{t("Select Unit")}</option>
                   {administrativeUnits.map((unit, index) => (
                     <option key={index} value={unit}>
                       {unit}
@@ -247,7 +253,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   invalid={!!(formik.touched.address && formik.errors.address)}
                   style={{ padding: "0.5rem", height: "1rem" }}
                 />
-                <Label for="floatingInput">Address</Label>
+                <Label for="floatingInput">{t("Address")}</Label>
                 {formik.touched.address && formik.errors.address && (
                   <FormFeedback type="invalid">
                     {formik.errors.address}
@@ -273,7 +279,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   }
                   style={{ padding: "0.5rem", height: "1rem" }}
                 />
-                <Label for="floatingInput">Municipality</Label>
+                <Label for="floatingInput">{t("Municipality")}</Label>
                 {formik.touched.municipality && formik.errors.municipality && (
                   <FormFeedback type="invalid">
                     {formik.errors.municipality}

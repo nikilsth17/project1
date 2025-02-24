@@ -8,33 +8,36 @@ import {
 import usFlag from "../../assets/images/flags/us.svg";
 import SimpleBar from "simplebar-react";
 import { country } from "../../common/data";
+import languages from "../../common/languages";
+import { useTranslation } from "react-i18next";
 
 const Country = () => {
-  const [seletedCountry4, setseletedCountry4] = useState({
-    id: 240,
-    flagImg: usFlag,
-    countryName: "United States of America",
-    countryCode: "+1",
-  });
-  const [dropdownOpen5, setDropdownOpen5] = useState(false);
-  const toggle5 = () => setDropdownOpen5((prevState) => !prevState);
+  const { i18n, t } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
+
+  const handleLanguageChange = (langKey) => {
+    setSelectedLanguage(langKey);
+    i18n.changeLanguage(langKey);
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center gap-2">
-      <span className="fw-bold">Language:</span>
+      <span className="fw-bold">{t("language")}:</span>
       <Dropdown
-        isOpen={dropdownOpen5}
-        toggle={toggle5}
+        isOpen={dropdownOpen}
+        toggle={toggleDropdown}
         className="topbar-head-dropdown header-item p-0"
       >
         <DropdownToggle
-          as="button"
           className="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle d-flex align-items-center"
           tag="button"
         >
           <img
-            src={seletedCountry4.flagImg}
-            alt="country flag"
+            src={languages[selectedLanguage].flag}
+            alt={languages[selectedLanguage].label}
             className="options-flagimg"
             height="15"
           />
@@ -42,25 +45,19 @@ const Country = () => {
 
         <DropdownMenu className="notify-item language">
           <SimpleBar style={{ maxHeight: "300px" }}>
-            {(country || []).map((item, key) => (
+            {Object.entries(languages).map(([key, lang]) => (
               <DropdownItem
-                as="li"
-                onClick={() => setseletedCountry4(item)}
                 key={key}
-                className="d-flex "
+                onClick={() => handleLanguageChange(key)}
+                className="d-flex align-items-center"
               >
-                <div className="me-2">
-                  <img
-                    src={item.flagImg}
-                    alt="country flag"
-                    className="options-flagimg"
-                    height="14"
-                  />
-                </div>
-
-                <div className="d-flex">
-                  <div className="country-name">{item.countryName}</div>
-                </div>
+                <img
+                  src={lang.flag}
+                  alt={lang.label}
+                  className="me-2 options-flagimg"
+                  height="14"
+                />
+                <span className="country-name">{lang.label}</span>
               </DropdownItem>
             ))}
           </SimpleBar>
@@ -71,3 +68,4 @@ const Country = () => {
 };
 
 export default Country;
+
