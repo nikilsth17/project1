@@ -25,7 +25,7 @@ const Country = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center gap-2">
-      <span className="fw-bold">{t("language")}:</span>
+      {/* <span className="fw-bold">{t("language")}:</span> */}
       <Dropdown
         isOpen={dropdownOpen}
         toggle={toggleDropdown}
@@ -39,7 +39,7 @@ const Country = () => {
             src={languages[selectedLanguage].flag}
             alt={languages[selectedLanguage].label}
             className="options-flagimg"
-            height="15"
+            height="20"
           />
         </DropdownToggle>
 

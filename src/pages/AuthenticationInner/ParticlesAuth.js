@@ -4,27 +4,17 @@ import { Col, Row } from "reactstrap";
 import image1 from "../../assets/project1/Ministeriu_Finansas.png";
 import image2 from "../../assets/project1/Reublica.png";
 import image3 from "../../assets/project1/Logo-INETL.png";
+import Country from "../../project1/Country/Country";
 
 const ParticlesAuth = ({ children }) => {
   return (
     <React.Fragment>
       <div className="auth-page-wrapper py-4">
         <div className="container">
-          {/* <div className="bg-overlay"></div> */}
-
-          {/* <div className="shape">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              viewBox="0 0 1440 120"
-            >
-              <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
-            </svg>
-          </div> */}
+     
           <Row className="mb-4">
             <Col md={3}>
-              <div className="d-flex justify-content-center align-content-center">
+              <div className="d-none d-lg-flex justify-content-center align-content-center">
                 <img src={image1} className="object-fit-contain w-50" />
               </div>
             </Col>
@@ -41,7 +31,7 @@ const ParticlesAuth = ({ children }) => {
               </div>
             </Col>
             <Col md={3}>
-              <div className="d-flex justify-content-center align-content-center">
+              <div className="d-none d-lg-flex justify-content-center align-content-center">
                 <img src={image3} className="object-fit-contain w-50" />
               </div>
             </Col>
@@ -52,22 +42,10 @@ const ParticlesAuth = ({ children }) => {
           </div>
         </div>
 
-        {/* pass the children */}
         {children}
 
-        {/* <footer className="footer">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="text-center">
-                  <p className="mb-0 text-muted">
-                    &copy; {new Date().getFullYear()} Cosmos Driving
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer> */}
+       
+       
       </div>
     </React.Fragment>
   );

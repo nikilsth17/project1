@@ -117,14 +117,14 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                   <span></span>
                 </span>
               </button>
-              <Link to="/dashboard">
+              {/* <Link to="/dashboard">
                 <img
                   src={"/" + window.APP_CONFIG.tenent + "/logo.png"}
                   alt=""
                   height="35"
                   className="d-md-none px-3 mt-3"
                 />
-              </Link>
+              </Link> */}
 
               {/* <SearchOption /> */}
             </div>

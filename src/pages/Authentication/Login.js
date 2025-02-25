@@ -26,6 +26,8 @@ import { createSelector } from "reselect";
 import { getLoggedInUser } from "../../helpers/fakebackend_helper";
 import logoDark from "../../assets/images/sebs-logo.png";
 import { toast } from "react-hot-toast";
+import "../../i18n";
+import { useTranslation } from "react-i18next";
 
 const Login = (props) => {
   const authuser = getLoggedInUser();
@@ -34,6 +36,7 @@ const Login = (props) => {
   const loginerror = useSelector((state) => state.Auth.errorMsg);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const [username, setusername] = useState("");
   const handleClick = () => {
@@ -150,8 +153,11 @@ const Login = (props) => {
                       action="#"
                     >
                       <div className="mb-2">
-                        <Label htmlFor="username" className="form-label text-dark">
-                          Email Address
+                        <Label
+                          htmlFor="username"
+                          className="form-label text-dark"
+                        >
+                          {t("Email Address")}
                         </Label>
                         <Input
                           name="username"
@@ -190,7 +196,10 @@ const Login = (props) => {
                             Forgot password?
                           </Link>
                         </div>
-                        <Label className="form-label text-dark" htmlFor="password-input ">
+                        <Label
+                          className="form-label text-dark"
+                          htmlFor="password-input "
+                        >
                           Password
                         </Label>
                         <div className="position-relative auth-pass-inputgroup mb-2">

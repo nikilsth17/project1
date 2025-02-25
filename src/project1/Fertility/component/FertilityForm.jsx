@@ -17,6 +17,8 @@ import {
 import * as Yup from "yup";
 import _BaseAPIService from "../../../services/_BaseAPIService";
 import Flatpickr from "react-flatpickr";
+import { useTranslation } from "react-i18next";
+import "../../../i18n";
 
 const UserSchema = Yup.object().shape({
   first_name: Yup.string().required("Required"),
@@ -40,7 +42,7 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
   const handleDateChange = (date) => {
     setDateChange(date[0]); // Assuming date is an array, pick the first value
   };
-
+  const { t, i18n } = useTranslation();
   const handleSubmit = (values, { resetForm }) => {
     if (editingUser) {
       setUsers(
@@ -85,7 +87,7 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
   return (
     <Modal isOpen={modal} toggle={toggleModal} size="lg">
       <ModalHeader toggle={toggleModal}>
-        {editingUser ? "Edit Fertility Form" : "Add Fertility Form"}
+        {editingUser ? t("Edit Fertility") : t("Add Fertility")}
       </ModalHeader>
       <ModalBody>
         <form onSubmit={formik.handleSubmit}>
@@ -105,7 +107,7 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   }
                   style={{ padding: "0.5rem", height: "1rem" }}
                 />
-                <Label for="floatingInput">First Name</Label>
+                <Label for="floatingInput">{t("First Name")}</Label>
                 {formik.touched.first_name && formik.errors.first_name && (
                   <FormFeedback type="invalid">
                     {formik.errors.first_name}
@@ -128,7 +130,7 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   }
                   style={{ padding: "0.5rem", height: "1rem" }}
                 />
-                <Label for="floatingInput">Last Name</Label>
+                <Label for="floatingInput">{t("Last Name")}</Label>
                 {formik.touched.last_name && formik.errors.last_name && (
                   <FormFeedback type="invalid">
                     {formik.errors.last_name}
@@ -148,11 +150,11 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   invalid={!!(formik.touched.gender && formik.errors.gender)}
                   style={{ padding: "0.5rem", height: "1rem" }}
                 >
-                  <option value="">Select gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="">{t("Select gender")}</option>
+                  <option value="male">{t("Male")}</option>
+                  <option value="female">{t("Female")}</option>
                 </Input>
-                <Label for="floatingInput">Gender</Label>
+                <Label for="floatingInput">{t("Gender")}</Label>
                 {formik.touched.gender && formik.errors.gender && (
                   <FormFeedback type="invalid">
                     {formik.errors.gender}
@@ -177,11 +179,11 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   }
                   style={{ padding: "0.5rem", height: "1rem" }}
                 >
-                  <option value="">Select municipality</option>
+                  <option value="">{t("Select municipality")}</option>
                   <option value="male">Bhaktapur</option>
                   <option value="female">Kathmandu</option>
                 </Input>
-                <Label for="floatingInput">Municipality</Label>
+                <Label for="floatingInput">{t("Municipality")}</Label>
                 {formik.touched.municipality && formik.errors.municipality && (
                   <FormFeedback type="invalid">
                     {formik.errors.municipality}
@@ -211,7 +213,7 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   <option value="male">Bhaktapur</option>
                   <option value="female">Kathmandu</option>
                 </Input>
-                <Label for="floatingInput">Municipality</Label>
+                <Label for="floatingInput">{t("Sub Administrative")}</Label>
                 {formik.touched.subAdministrative &&
                   formik.errors.subAdministrative && (
                     <FormFeedback type="invalid">
@@ -237,7 +239,7 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   <option value="male">Bhaktapur</option>
                   <option value="female">Kathmandu</option>
                 </Input>
-                <Label for="floatingInput">Municipality</Label>
+                <Label for="floatingInput">{t("Soco")}</Label>
                 {formik.touched.soco && formik.errors.soco && (
                   <FormFeedback type="invalid">
                     {formik.errors.soco}
@@ -262,7 +264,7 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   <option value="male">Bhaktapur</option>
                   <option value="female">Kathmandu</option>
                 </Input>
-                <Label for="floatingInput">Municipality</Label>
+                <Label for="floatingInput">{t("Aldeia")}</Label>
                 {formik.touched.aldeia && formik.errors.aldeia && (
                   <FormFeedback type="invalid">
                     {formik.errors.aldeia}
@@ -286,16 +288,16 @@ const FertilityForm = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                     minDate: "today",
                   }}
                 />
-                <Label for="floatingInput">Fertility Date</Label>
+                <Label for="floatingInput">{t("Fertility Date")}</Label>
               </div>
             </Col>
           </Row>
           <div className="d-flex justify-content-end gap-3">
             <Button color="danger" onClick={toggleModal}>
-              Cancel
+              {t("Cancel")}
             </Button>
             <Button type="submit" color="success">
-              {editingUser ? "Update" : "Create"}
+              {editingUser ? t("Update") : t("Create")}
             </Button>
           </div>
         </form>

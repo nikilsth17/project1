@@ -23,7 +23,8 @@ import DeleteModal from "../../../Components/Common/DeleteModal";
 import UserPage from "../../User/component/UserPage";
 import useIsSmallScreen from "../../../CosmosAdminPages/Payment Type/Component/small screen/SmallScreen";
 import FertilityForm from "../component/FertilityForm";
-
+import { useTranslation } from "react-i18next";
+import "../../../i18n"
 const customStyles = {
   headCells: {
     style: {
@@ -44,6 +45,7 @@ const FertilityPage = () => {
   const driverId = user?.user?.id;
   // console.log("🚀 ~ Calender ~ driverId:", driverId);
   const userType = user?.user?.user_type;
+  const { t, i18n } = useTranslation();
 
   const [loading, setLoading] = useState(false);
   const [filterText, setFilterText] = useState("");
@@ -146,7 +148,7 @@ const FertilityPage = () => {
             overflowWrap: "break-word",
           }}
         >
-          Name
+          {t("Name")}
         </div>
       ),
       selector: (row) => (
@@ -158,13 +160,13 @@ const FertilityPage = () => {
       wrap: true,
     },
     {
-      name: "Sex",
+      name: t("Sex"),
       selector: (row) => row.email,
       sortable: true,
       wrap: true,
     },
     {
-      name: "Fertility Date",
+      name: t("Fertility Date"),
       selector: (row) => row.email,
       sortable: true,
       wrap: true,
@@ -178,7 +180,7 @@ const FertilityPage = () => {
             overflowWrap: "break-word",
           }}
         >
-          Report Date
+          {t("Report Date")}
         </div>
       ),
       selector: (row) => row.phone_no,
@@ -194,7 +196,7 @@ const FertilityPage = () => {
             overflowWrap: "break-word",
           }}
         >
-          Municipality
+          {t("Municipality")}
         </div>
       ),
       selector: (row) => row.user_role,
@@ -210,7 +212,7 @@ const FertilityPage = () => {
             overflowWrap: "break-word",
           }}
         >
-          Sub Administrative
+          {t("Sub Administrative")}
         </div>
       ),
       selector: (row) => row.administrative_unit,
@@ -219,7 +221,7 @@ const FertilityPage = () => {
     },
 
     {
-      name: "Action",
+      name: t("Action"),
       selector: (row) => (
         <ButtonGroup className="gap-1">
           <Button
@@ -279,7 +281,7 @@ const FertilityPage = () => {
           className="d-flex justify-content-end align-items-end mb-2"
         >
           <Button className="package-button px-1 px-sm-2" onClick={toggleModal}>
-            Add Fertility
+            {t("Add Fertility")}
           </Button>
         </Col>
         {/* // )} */}
@@ -304,26 +306,26 @@ const FertilityPage = () => {
                   <Card>
                     <CardBody>
                       <CardTitle tag="h5">
-                        <strong>Name: </strong>
+                        <strong>{t("Name")}: </strong>
                         {item.first_name} {item.last_name}
                       </CardTitle>
 
                       <CardText>
-                        <strong>Sex: </strong> {item.email}
+                        <strong>{t("Sex")}: </strong> {item.email}
                       </CardText>
 
                       <CardText>
-                        <strong>Fertility Date: </strong> {item.phone_no}
+                        <strong>{t("Fertility Date")}: </strong> {item.phone_no}
                       </CardText>
                       <CardText>
-                        <strong>Report Date: </strong> {item.user_role}
+                        <strong>{t("Report Date")}: </strong> {item.user_role}
                       </CardText>
                       <CardText>
-                        <strong>Municipality: </strong>{" "}
+                        <strong>{t("Municipality")}: </strong>{" "}
                         {item.administrative_unit}
                       </CardText>
                       <CardText>
-                        <strong>Sub Administrative: </strong>{" "}
+                        <strong>{t("Sub Administrative")}: </strong>{" "}
                         {item.administrative_unit}
                       </CardText>
                       <div className="d-flex gap-2 justify-content-end">

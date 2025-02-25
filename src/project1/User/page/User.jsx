@@ -261,7 +261,7 @@ const User = () => {
   return (
     <div className="page-content">
       <div className="container-fluid">
-        <BreadCrumb title="Customer List" pageTitle="Customer" />
+        <BreadCrumb title="User List" pageTitle="User" />
       </div>
       <Row className="">
         <Col md={5} className="mb-2">
@@ -305,22 +305,22 @@ const User = () => {
                   <Card>
                     <CardBody>
                       <CardTitle tag="h5">
-                        <strong>User: </strong>
+                        <strong>{t("User")}: </strong>
                         {item.first_name} {item.last_name}
                       </CardTitle>
 
                       <CardText>
-                        <strong>Email: </strong> {item.email}
+                        <strong>{t("Email")}: </strong> {item.email}
                       </CardText>
 
                       <CardText>
-                        <strong>Phone Number: </strong> {item.phone_no}
+                        <strong>{t("Phone Number")}: </strong> {item.phone_no}
                       </CardText>
                       <CardText>
-                        <strong>User Role: </strong> {item.user_role}
+                        <strong>{t("User Role")}: </strong> {item.user_role}
                       </CardText>
                       <CardText>
-                        <strong>Administrative Unit: </strong>{" "}
+                        <strong>{t("Administrative Unit")}: </strong>{" "}
                         {item.administrative_unit}
                       </CardText>
                       <div className="d-flex gap-2 justify-content-end">

@@ -306,7 +306,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                   }
                   style={{ padding: "0.5rem", height: "1rem" }}
                 />
-                <Label for="floatingInput">Sub-Administrative</Label>
+                <Label for="floatingInput">{t("Sub-Administrative")}</Label>
                 {formik.touched.sub_administrative &&
                   formik.errors.sub_administrative && (
                     <FormFeedback type="invalid">
@@ -375,7 +375,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                     height: "1rem",
                   }}
                 />
-                <Label for="password">Password</Label>
+                <Label for="password">{t("Password")}</Label>
                 {formik.touched.password && formik.errors.password && (
                   <FormFeedback>{formik.errors.password}</FormFeedback>
                 )}
@@ -419,7 +419,7 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
                     height: "1rem",
                   }}
                 />
-                <Label for="floatingInput">Confirm Password</Label>
+                <Label for="floatingInput">{t("Confirm Password")}</Label>
                 {formik.touched.password_confirmation &&
                   formik.errors.password_confirmation && (
                     <FormFeedback type="invalid">
@@ -449,10 +449,10 @@ const UserPage = ({ modal, toggleModal, editingUser, setEditingUser }) => {
           </Row>
           <div className="d-flex justify-content-end gap-3">
             <Button color="danger" onClick={toggleModal}>
-              Cancel
+              {t("Cancel")}
             </Button>
             <Button type="submit" color="success">
-              {editingUser ? "Update" : "Create"}
+              {editingUser ? t("Update") : t("Create")}
             </Button>
           </div>
         </form>
