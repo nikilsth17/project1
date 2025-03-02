@@ -26,7 +26,10 @@ import FertilityForm from "../component/FertilityForm";
 import { useTranslation } from "react-i18next";
 import "../../../i18n";
 import FertilityServices from "../../../services/CRVS/FertilityServices";
-import { formatDate, formatDateTime } from "../../../CosmosAdminPages/Appointment/Component/FormatDate";
+import {
+  formatDate,
+  formatDateTime,
+} from "../../../CosmosAdminPages/Appointment/Component/FormatDate";
 const customStyles = {
   headCells: {
     style: {
@@ -51,6 +54,7 @@ const FertilityPage = () => {
 
   const [loading, setLoading] = useState(false);
   const [filterText, setFilterText] = useState("");
+  const [filterMunici, setFilterMunici] = useState("");
   const [modal, setModal] = useState(false);
   const [editingData, setEditingData] = useState(null);
   // console.log("editingData", editingData);
@@ -93,17 +97,20 @@ const FertilityPage = () => {
   const handleFilterChange = (e) => {
     setFilterText(e.target.value);
   };
-
+  const handleFilterMunici = (e) => {
+    setFilterMunici(e.target.value);
+  };
   const filteredPackages = dataList.filter((pkg) => {
     // console.log("🚀 ~ filteredPackages ~ pkg:", pkg);
 
     // Combine name, surname, email, and phone number into a single search context, handling undefined fields
     const searchContext = `${pkg?.name || ""}`.toLowerCase();
-
+    const searchMunici = `${pkg?.municipality?.name || ""}`.toLowerCase();
     // Check if the filterText is included in any of the search context
     const matchesFilter = searchContext.includes(filterText.toLowerCase());
+    const matchesMunici = searchMunici.includes(filterText.toLowerCase());
 
-    return matchesFilter;
+    return matchesFilter || matchesMunici;
   });
 
   async function fetchData() {
@@ -214,7 +221,18 @@ const FertilityPage = () => {
       sortable: true,
       wrap: true,
     },
-
+    {
+      name: t("Soco"),
+      selector: (row) => row.suco?.name,
+      sortable: true,
+      wrap: true,
+    },
+    {
+      name: t("Aldeia"),
+      selector: (row) => row.aldeia?.name,
+      sortable: true,
+      wrap: true,
+    },
     {
       name: t("Action"),
       selector: (row) => (
@@ -239,7 +257,6 @@ const FertilityPage = () => {
         </ButtonGroup>
       ),
       center: true,
-      width: "20%",
     },
   ];
 
@@ -260,18 +277,26 @@ const FertilityPage = () => {
         <BreadCrumb title="Fertility List" pageTitle="Fertility" />
       </div>
       <Row className="">
-        <Col md={5} className="mb-2">
+        <Col md={3} className="mb-2">
           <InputGroup>
             <Input
-              placeholder="Search by name, email and phone number"
+              placeholder="Search by name"
               value={filterText}
               onChange={handleFilterChange}
             />
           </InputGroup>
         </Col>
-
+        <Col md={3} className="mb-2">
+          <InputGroup>
+            <Input
+              placeholder="Search by municipality"
+              value={filterMunici}
+              onChange={handleFilterMunici}
+            />
+          </InputGroup>
+        </Col>
         <Col
-          md={7}
+          md={6}
           xs={12}
           className="d-flex justify-content-end align-items-end mb-2"
         >
@@ -302,26 +327,38 @@ const FertilityPage = () => {
                     <CardBody>
                       <CardTitle tag="h5">
                         <strong>{t("Name")}: </strong>
-                        {item.first_name} {item.last_name}
+                        {item.name}
                       </CardTitle>
 
                       <CardText>
-                        <strong>{t("Sex")}: </strong> {item.email}
+                        <strong>{t("Sex")}: </strong> {item.sex}
                       </CardText>
 
                       <CardText>
-                        <strong>{t("Fertility Date")}: </strong> {item.phone_no}
-                      </CardText>
-                      <CardText>
-                        <strong>{t("Report Date")}: </strong> {item.user_role}
-                      </CardText>
-                      <CardText>
                         <strong>{t("Municipality")}: </strong>{" "}
-                        {item.administrative_unit}
+                        {item.municipality?.name}
                       </CardText>
                       <CardText>
                         <strong>{t("Sub Administrative")}: </strong>{" "}
-                        {item.administrative_unit}
+                        {item.sub_division?.name}
+                      </CardText>
+                      <CardText>
+                        <strong>{t("Soco")}: </strong> {item.suco?.name}
+                      </CardText>
+                      <CardText>
+                        <strong>{t("Aldeia")}: </strong> {item.aldeia?.name}
+                      </CardText>
+                      <CardText>
+                        <strong>{t("Collected by")}: </strong>{" "}
+                        {item.collected_by?.name}
+                      </CardText>
+                      <CardText>
+                        <strong>{t("Fertility Date")}: </strong>{" "}
+                        {formatDate(item.fertility_date)}
+                      </CardText>
+                      <CardText>
+                        <strong>{t("Report Date")}: </strong>{" "}
+                        {formatDate(item.report_date)}
                       </CardText>
                       <div className="d-flex gap-2 justify-content-end">
                         <Button
