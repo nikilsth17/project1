@@ -124,7 +124,7 @@ const Login = (props) => {
     navigate("/forgot-password");
   };
 
-  document.title = "Cosmos Bookings";
+  document.title = "CRVS";
 
   return (
     <React.Fragment>

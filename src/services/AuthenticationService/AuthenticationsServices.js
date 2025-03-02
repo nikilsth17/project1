@@ -8,6 +8,12 @@ const AuthenticationsServices = {
   //   const response = await apiService.get('/good-category');
   //   return response.data;
   // },
+  login: async ({username,password}) => {
+    const response = await apiService.post(
+      `/login?username=${username}&password=${password}`
+    );
+    return response.data;
+  },
   changePassword: async (changeData) => {
     try {
       const response = await apiService.put(

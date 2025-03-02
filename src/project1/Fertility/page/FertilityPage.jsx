@@ -24,7 +24,9 @@ import UserPage from "../../User/component/UserPage";
 import useIsSmallScreen from "../../../CosmosAdminPages/Payment Type/Component/small screen/SmallScreen";
 import FertilityForm from "../component/FertilityForm";
 import { useTranslation } from "react-i18next";
-import "../../../i18n"
+import "../../../i18n";
+import FertilityServices from "../../../services/CRVS/FertilityServices";
+import { formatDate, formatDateTime } from "../../../CosmosAdminPages/Appointment/Component/FormatDate";
 const customStyles = {
   headCells: {
     style: {
@@ -96,9 +98,7 @@ const FertilityPage = () => {
     // console.log("🚀 ~ filteredPackages ~ pkg:", pkg);
 
     // Combine name, surname, email, and phone number into a single search context, handling undefined fields
-    const searchContext = `${pkg?.first_name || ""} ${pkg?.last_name || ""} ${
-      pkg?.email || ""
-    } ${pkg?.phone_no || ""} ${pkg?.email}`.toLowerCase();
+    const searchContext = `${pkg?.name || ""}`.toLowerCase();
 
     // Check if the filterText is included in any of the search context
     const matchesFilter = searchContext.includes(filterText.toLowerCase());
@@ -109,11 +109,10 @@ const FertilityPage = () => {
   async function fetchData() {
     setLoading(true);
     try {
-      let response;
+      const response = await FertilityServices.getList();
+      console.log("🚀 ~ fetchData ~ response:", response);
 
-      // response = await CustomerServices.getList();
-
-      setDataList(data);
+      setDataList(response.data);
     } catch (error) {
       console.error("Error fetching packages:", error);
     } finally {
@@ -151,23 +150,19 @@ const FertilityPage = () => {
           {t("Name")}
         </div>
       ),
-      selector: (row) => (
-        <div>
-          {row.first_name} {row.last_name}
-        </div>
-      ),
+      selector: (row) => <div>{row.name}</div>,
       sortable: true,
       wrap: true,
     },
     {
       name: t("Sex"),
-      selector: (row) => row.email,
+      selector: (row) => row.sex,
       sortable: true,
       wrap: true,
     },
     {
       name: t("Fertility Date"),
-      selector: (row) => row.email,
+      selector: (row) => formatDate(row.fertility_date),
       sortable: true,
       wrap: true,
     },
@@ -183,7 +178,7 @@ const FertilityPage = () => {
           {t("Report Date")}
         </div>
       ),
-      selector: (row) => row.phone_no,
+      selector: (row) => formatDate(row.report_date),
       sortable: true,
       wrap: true,
     },
@@ -199,7 +194,7 @@ const FertilityPage = () => {
           {t("Municipality")}
         </div>
       ),
-      selector: (row) => row.user_role,
+      selector: (row) => row.municipality?.name,
       sortable: true,
       wrap: true,
     },
@@ -215,7 +210,7 @@ const FertilityPage = () => {
           {t("Sub Administrative")}
         </div>
       ),
-      selector: (row) => row.administrative_unit,
+      selector: (row) => row.sub_division?.name,
       sortable: true,
       wrap: true,
     },

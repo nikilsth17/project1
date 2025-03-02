@@ -9,11 +9,9 @@
 
 window.APP_CONFIG = {
   api1: {
-    baseapi: "https://api-cosmos2.sebs.asia/api/v1",
+    baseapi: "https://api-crvs.blazespider.com/api",
   },
-  api2: {
-    baseapi: "https://api-cosmos2.sebs.asia/api/v1",
-  },
+
  
   tenent: "sebs",
  
